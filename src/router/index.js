@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import Home from '@/components/Home'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import NotFound from '@/components/NotFound'
 import CurrentMarket from '@/components/CurrentMarket'
+import UserProfile from '@/components/Profile'
 
 
 Vue.use(Router)
@@ -35,9 +36,14 @@ export default new Router({
       component: NotFound
     },
     {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello,
+      path: '/profile',
+      name: 'UserProfile',
+      component: UserProfile
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home,
       meta: {
         requireAuth: true
       }

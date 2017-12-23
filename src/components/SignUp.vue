@@ -1,6 +1,7 @@
 <template>
     <div class="sign-up">
         <h1>Create an Account</h1>
+        <input type="text" v-model="displayName" placeholder="Display Name">
         <input type="text" v-model="email" placeholder="Email">
         <input type="password" v-model="password" placeholder="Password">
         <button v-on:click="signUp" class="btn btn-primary btn-block btn-large">Sign Up</button>
@@ -10,20 +11,29 @@
 
 <script>
 import firebase from 'firebase'
+import toastr from "toastr";
 
 export default {
     name: 'signup',
     data: function() {
         return {
+            displayName: '',
+            photoURL: "http://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/profile_user.jpg",
             email: '',
-            password: ''
+            password: '',
         }
     },
     methods: {
         signUp: function() {
+            var $this = this;
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                 function(user) {
+                    firebase.auth().currentUser.updateProfile({
+                    displayName: $this.displayName,
+                    photoURL: $this.photoURL,
+                    });
                     toastr.success('Your account has been created')
+                    $this.$router.replace({ path: "login" });
                 },
                 function(err) {
                     var errorCode = err.code;

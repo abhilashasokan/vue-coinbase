@@ -13,11 +13,12 @@
                   <!-- Collect the nav links, forms, and other content for toggling -->
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                      <li class="first-list"><a class="active" href="index.html">Home</a></li>
+                      <li class="first-list"><router-link to="/home" class="scroll active">Home</router-link></li>
                       <li><a href="#about" class="scroll">About</a></li>
                       <li><a href="#team" class="scroll">Team</a></li>
                       <li><a href="#rate" class="scroll">Rates</a></li>
-                      <li><a href="#contact" class="scroll">Contact</a></li>
+                      <li><router-link to="/profile" class="scroll">Profile</router-link></li>
+                      <li><a v-on:click="logout" class="scroll">Logout</a></li>
                     </ul>	
                     <div class="clearfix"> </div>
                   </div>	
@@ -36,10 +37,12 @@
 import firebase from "firebase";
 
 export default {
-  name: "Hello",
+  name: "Home",
   data() {
+    console.log(firebase.auth().currentUser)
     return {
       msg: "Welcome to Your Portfolio"
+
     };
   },
   methods: {
@@ -58,11 +61,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header-bottom {
-  background: #212121;
+background: rgb(125,126,125); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
   padding: 1em 2em;
   margin-top: -3px;
-  margin-left: -3px;
+  width: 99%;
   height: 75px;
+  border-radius: 2px;
 }
 .bigpi-logo {
   text-align: center;
