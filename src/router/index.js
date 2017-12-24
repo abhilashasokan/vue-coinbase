@@ -7,7 +7,6 @@ import NotFound from '@/components/NotFound'
 import CurrentMarket from '@/components/CurrentMarket'
 import UserProfile from '@/components/Profile'
 
-
 Vue.use(Router)
 
 export default new Router({
